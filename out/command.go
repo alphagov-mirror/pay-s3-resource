@@ -50,6 +50,10 @@ func (command *Command) Run(sourceDir string, request Request) (Response, error)
 	if err != nil {
 		return Response{}, err
 	}
+        
+        if localPath == "" {
+                return Response{}, nil
+        }
 
 	remotePath := command.remotePath(request, localPath, sourceDir)
 
@@ -139,7 +143,7 @@ func (command *Command) match(params Params, sourceDir string) (string, error) {
 	}
 
 	if len(matches) == 0 {
-		return "", fmt.Errorf("no matches found for pattern: %s", pattern)
+		return "", nil
 	}
 
 	if len(matches) > 1 {

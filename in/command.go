@@ -59,7 +59,7 @@ func (command *Command) Run(destinationDir string, request Request) (Response, e
 
 	if request.Source.Regexp != "" {
 		if request.Version.Path == "" {
-			return Response{}, ErrMissingPath
+			return Response{}, nil
 		}
 
 		remotePath = request.Version.Path
